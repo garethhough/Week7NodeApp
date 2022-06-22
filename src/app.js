@@ -34,11 +34,16 @@ const app = async (yargsObj) => {
       title: yargsObj.title,
     });
     console.log("Entry deleted");
-    // Waits for filter to be called
-  } else if (yargsObj.filter) {
+    // Waits for filterActor to be called
+  } else if (yargsObj.filterActor) {
+    await filterMovies(collection, {
+      actor: yargsObj.actor,
+    });
+    console.log("Entries filtered");
+    // Waits for filterTitle to be called
+  } else if (yargsObj.filterTitle) {
     await filterMovies(collection, {
       title: yargsObj.title,
-      actor: yargsObj.actor,
     });
     console.log("Entries filtered");
   } else {

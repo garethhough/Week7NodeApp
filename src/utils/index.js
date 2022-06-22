@@ -18,6 +18,7 @@ exports.listMovies = async (collection) => {
     console.log(error);
   }
 };
+
 //filter db entries by title or actor
 exports.filterMovies = async (collection, movieObj) => {
   try {
@@ -37,3 +38,5 @@ exports.deleteMovie = async (collection, movieObj) => {
     console.log(error);
   }
 };
+
+ 
