@@ -18,8 +18,26 @@ exports.listMovies = async (collection) => {
   }
 };
 
-//to do
-
-//create function for updating database
+// create function that updates database entries
+exports.updateMovie = async (collection, movieObj) => {
+  try {
+    const updateMovie = await collection.updateOne(
+      { title: movieObj.title },
+      { $set: movieObj }
+    );
+    console.log(updateMovie);
+  } catch (error) {
+    console.log(error);
+  }
+};
 
 //create function to delete one or more database entries
+exports.deleteMovie = async (collection, movieObj) => {
+  try {
+    const deleteMovie = await collection.deleteOne(movieObj);
+    console.log(deleteMovie);
+  } catch (error) {
+    console.log(error);
+  }
+}
+

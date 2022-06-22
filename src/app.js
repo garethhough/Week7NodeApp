@@ -2,7 +2,7 @@ const yargs = require("yargs");
 
 const { connection, client } = require("./db/connection");
 
-const { addMovie, listMovies } = require("./utils");
+const { addMovie, listMovies, updateMovie, deleteMovie } = require("./utils");
 
 const app = async (yargsObj) => {
   const collection = await connection();
@@ -16,6 +16,20 @@ const app = async (yargsObj) => {
     // Waits for list to be called
   } else if (yargsObj.list) {
     await listMovies(collection);
+    // Waits for update to be called
+  } else if (yargsObj.update) {
+    await updateMovie(collection, {
+      title: yargsObj.title,
+      actor: yargsObj.actor,
+      set: yargsObj.set,
+    });
+    console.log("Entry updated");
+    // Waits for delete to be called
+  } else if (yargsObj.delete) {
+    await deleteMovie(collection, {
+      title: yargsObj.title,
+    });
+    console.log("Entry deleted");
   } else {
     console.log("Incorrect command");
   }
