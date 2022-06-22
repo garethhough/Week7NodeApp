@@ -9,6 +9,7 @@ exports.addMovie = async (collection, movieObj) => {
   }
 };
 
+// create function that lists all entries in database
 exports.listMovies = async (collection) => {
   try {
     const listMovies = await collection.find().toArray();
@@ -31,7 +32,7 @@ exports.updateMovie = async (collection, movieObj) => {
   }
 };
 
-//create function to delete one or more database entries
+//create function to delete one entry
 exports.deleteMovie = async (collection, movieObj) => {
   try {
     const deleteMovie = await collection.deleteOne(movieObj);
@@ -39,5 +40,5 @@ exports.deleteMovie = async (collection, movieObj) => {
   } catch (error) {
     console.log(error);
   }
-}
+};
 
