@@ -19,27 +19,32 @@ const app = async (yargsObj) => {
       actor: yargsObj.actor,
     });
     console.log("Entry added");
+
     // Waits for list to be called
   } else if (yargsObj.list) {
     await listMovies(collection);
+
     // Waits for update to be called
-  } else if (yargsObj.update) {
-    await updateMovie(collection, {
-      title: yargsObj.title,
+  } else if(yargsObj.update){
+    await updateMovie(collection,yargsObj.update, 
+    {title:yargsObj.title,actor:yargsObj.actor,
     });
-    console.log("Entry updated");
+    console.log("Entry updated!"); 
+
     // Waits for delete to be called
   } else if (yargsObj.delete) {
     await deleteMovie(collection, {
       title: yargsObj.title,
     });
     console.log("Entry deleted");
+
     // Waits for filterActor to be called
   } else if (yargsObj.filterActor) {
     await filterMovies(collection, {
       actor: yargsObj.actor,
     });
     console.log("Entries filtered");
+
     // Waits for filterTitle to be called
   } else if (yargsObj.filterTitle) {
     await filterMovies(collection, {
@@ -49,6 +54,7 @@ const app = async (yargsObj) => {
   } else {
     console.log("Incorrect command");
   }
+
   // Waits for user to close database
   await client.close();
 };

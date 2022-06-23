@@ -9,7 +9,7 @@ exports.addMovie = async (collection, movieObj) => {
   }
 };
 
-// create function that lists all entries in database
+// function that lists all entries in database
 exports.listMovies = async (collection) => {
   try {
     const listMovies = await collection.find().toArray();
@@ -19,7 +19,7 @@ exports.listMovies = async (collection) => {
   }
 };
 
-//filter db entries by title or actor
+// function that filters the database entries by title or actor
 exports.filterMovies = async (collection, movieObj) => {
   try {
     const filterMovies = await collection.find(movieObj).toArray();
@@ -29,7 +29,7 @@ exports.filterMovies = async (collection, movieObj) => {
   }
 };
 
-//remove function that deletes database entries using crud
+// remove function that deletes database entries
 exports.deleteMovie = async (collection, movieObj) => {
   try {
     const deleteMovie = await collection.deleteOne({ title: movieObj.title });
@@ -39,4 +39,15 @@ exports.deleteMovie = async (collection, movieObj) => {
   }
 };
 
- 
+// update function that updates database entries
+exports.updateMovie = async (collection, oldTitle, newMovie) => {
+  try{
+      const checkTitle = {title:oldTitle};
+      const updateTo = {$set:{title:newMovie.title,actor:newMovie.actor}};
+      const updateMovie = await collection.updateOne(checkTitle, updateTo);
+      console.log(updateMovie);
+  }
+  catch (error){
+      console.log(error);
+  }
+}
